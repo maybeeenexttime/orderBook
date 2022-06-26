@@ -18,7 +18,8 @@ import java.util.Set;
 @Accessors(chain = true)
 public class Customer {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "customer_seq")
+    @SequenceGenerator(name = "customer_seq")
     private Long id;
     private String firstName;
     private String lastName;

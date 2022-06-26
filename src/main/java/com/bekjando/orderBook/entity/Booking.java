@@ -17,7 +17,8 @@ import java.util.List;
 @Accessors(chain = true)
 public class Booking {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "booking_seq")
+    @SequenceGenerator(name = "booking_seq")
     private Long id;
     private String name;
     private String status;
