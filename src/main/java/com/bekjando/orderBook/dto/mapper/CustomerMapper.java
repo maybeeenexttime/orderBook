@@ -12,10 +12,10 @@ public class CustomerMapper {
     }
 
     public static Customer customerDtoToCustom(CustomerDto customerDto) {
-        Customer customer = new Customer()
-                .setFirstName(customerDto.firstName)
-                .setLastName(customerDto.lastName)
-                .setBookings(customerDto.bookings.stream().map(BookingMapper::bookingDtoToBooking).collect(Collectors.toList()));
+        Customer customer = new Customer();
+        customer.setFirstName(customerDto.firstName);
+        customer.setLastName(customerDto.lastName);
+        customer.setBookings(customerDto.bookings.stream().map(BookingMapper::bookingDtoToBooking).collect(Collectors.toList()));
         return customer;
     }
 }
