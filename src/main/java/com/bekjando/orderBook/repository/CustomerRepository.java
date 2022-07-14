@@ -1,13 +1,14 @@
 package com.bekjando.orderBook.repository;
 
-import com.bekjando.orderBook.entity.Customer;
+import com.bekjando.orderBook.model.Customer;
+import com.bekjando.orderBook.model.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface CustomerRepository extends CrudRepository<Customer, Long> {
-    List<Customer> findByLastName(String lastName);
-    Customer findById(long id);
+
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    Customer findByUserName(String userName);
 }
