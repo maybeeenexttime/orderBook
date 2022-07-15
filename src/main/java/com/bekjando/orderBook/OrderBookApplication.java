@@ -19,15 +19,14 @@ public class OrderBookApplication {
 		SpringApplication.run(OrderBookApplication.class, args);
 	}
 
+
+
+
 	@Bean
-	PasswordEncoder passwordEncoder(){
-		return new  BCryptPasswordEncoder();
-	}
+	CommandLineRunner run(CustomerService customerService){
+		return
+				args -> {
 
-
-//	@Bean
-//	CommandLineRunner run(CustomerService customerService){
-//		return args -> {
 //			customerService.saveRole(new Role(null, "ROLE_CLIENT"));
 //			customerService.saveRole(new Role(null, "ROLE_MANAGER"));
 //			customerService.saveRole(new Role(null, "ROLE_ADMIN"));
@@ -54,7 +53,7 @@ public class OrderBookApplication {
 //			customerService.addRoleToCustomer("stevege", "ROLE_ADMIN");
 //			customerService.addRoleToCustomer("stevege", "ROLE_SUPER_ADMIN");
 //
-//		};
-//	}
+		};
+	}
 
 }
