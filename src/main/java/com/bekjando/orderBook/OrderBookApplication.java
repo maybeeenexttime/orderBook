@@ -52,7 +52,7 @@ public class OrderBookApplication {
 //			customerService.addRoleToCustomer("stevege", "ROLE_CLIENT");
 //			customerService.addRoleToCustomer("stevege", "ROLE_ADMIN");
 //			customerService.addRoleToCustomer("stevege", "ROLE_SUPER_ADMIN");
-//
+
 		};
 	}
 

@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -35,16 +36,26 @@ public class CustomerController {
     @Autowired
     private final CustomerService customerService;
 
+    private final PasswordEncoder passwordEncoder;
+
+    @PostMapping("/signup")
+    public ResponseEntity toRegistration(@RequestBody Customer customer){
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+        customerService.saveCustomer(customer);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/users")
     public ResponseEntity<List<Customer>> getCustomers() {
         return ResponseEntity.ok().body(customerService.getCustomers());
     }
 
-    @PostMapping("/user/save")
-    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
-        return ResponseEntity.created(uri).body(customerService.saveCustomer(customer));
-    }
+//    @PostMapping("/user/save")
+//    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
+//        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
+//        String enncryptedPassword = passwordEncoder.encode(customer.getPassword());
+//        return ResponseEntity.created(uri).body(customerService.saveCustomer(customer));
+//    }
 
     @PostMapping("/role/save")
     public ResponseEntity<Role> saveRole(@RequestBody Role role) {
@@ -94,10 +105,7 @@ public class CustomerController {
         } else {
             throw new RuntimeException("Отсутствует refresh_token");
         }
-
     }
-
-
 }
 
 @Data
